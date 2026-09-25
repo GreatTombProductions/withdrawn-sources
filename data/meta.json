@@ -1,0 +1,314 @@
+{
+ "generated_at": "2026-09-25T17:36:39Z",
+ "snapshot": {
+  "source": "Retraction Watch Database (Crossref mirror)",
+  "source_page": "https://gitlab.com/crossref/retraction-watch-data",
+  "source_url": "https://gitlab.com/crossref/retraction-watch-data/-/raw/main/retraction_watch.csv",
+  "fetched_at": "2026-09-25T17:35:44Z",
+  "sha256": "268f48866dfe73e96978897b43acbb260acfce1116fa647156c290b489b0746b",
+  "bytes": 66927623
+ },
+ "counts": {
+  "records": 72646,
+  "by_nature": {
+   "Retraction": 67233,
+   "Expression of concern": 3720,
+   "Correction": 1533,
+   "Reinstatement": 160
+  },
+  "indexed_dois": 111324,
+  "indexed_pmids": 62461,
+  "records_without_doi": 3284
+ },
+ "year_histogram": [
+  [
+   "1756",
+   1
+  ],
+  [
+   "1927",
+   1
+  ],
+  [
+   "1960",
+   1
+  ],
+  [
+   "1966",
+   1
+  ],
+  [
+   "1967",
+   2
+  ],
+  [
+   "1968",
+   1
+  ],
+  [
+   "1970",
+   7
+  ],
+  [
+   "1971",
+   1
+  ],
+  [
+   "1975",
+   2
+  ],
+  [
+   "1977",
+   31
+  ],
+  [
+   "1979",
+   5
+  ],
+  [
+   "1980",
+   14
+  ],
+  [
+   "1981",
+   4
+  ],
+  [
+   "1982",
+   5
+  ],
+  [
+   "1983",
+   13
+  ],
+  [
+   "1984",
+   8
+  ],
+  [
+   "1985",
+   15
+  ],
+  [
+   "1986",
+   29
+  ],
+  [
+   "1987",
+   14
+  ],
+  [
+   "1988",
+   7
+  ],
+  [
+   "1989",
+   16
+  ],
+  [
+   "1990",
+   20
+  ],
+  [
+   "1991",
+   24
+  ],
+  [
+   "1992",
+   27
+  ],
+  [
+   "1993",
+   31
+  ],
+  [
+   "1994",
+   24
+  ],
+  [
+   "1995",
+   26
+  ],
+  [
+   "1996",
+   27
+  ],
+  [
+   "1997",
+   47
+  ],
+  [
+   "1998",
+   72
+  ],
+  [
+   "1999",
+   54
+  ],
+  [
+   "2000",
+   43
+  ],
+  [
+   "2001",
+   40
+  ],
+  [
+   "2002",
+   127
+  ],
+  [
+   "2003",
+   101
+  ],
+  [
+   "2004",
+   146
+  ],
+  [
+   "2005",
+   150
+  ],
+  [
+   "2006",
+   230
+  ],
+  [
+   "2007",
+   346
+  ],
+  [
+   "2008",
+   466
+  ],
+  [
+   "2009",
+   1209
+  ],
+  [
+   "2010",
+   5046
+  ],
+  [
+   "2011",
+   4972
+  ],
+  [
+   "2012",
+   1239
+  ],
+  [
+   "2013",
+   1515
+  ],
+  [
+   "2014",
+   1196
+  ],
+  [
+   "2015",
+   1758
+  ],
+  [
+   "2016",
+   1924
+  ],
+  [
+   "2017",
+   1904
+  ],
+  [
+   "2018",
+   2825
+  ],
+  [
+   "2019",
+   3235
+  ],
+  [
+   "2020",
+   3650
+  ],
+  [
+   "2021",
+   5265
+  ],
+  [
+   "2022",
+   6470
+  ],
+  [
+   "2023",
+   13565
+  ],
+  [
+   "2024",
+   6792
+  ],
+  [
+   "2025",
+   6082
+  ],
+  [
+   "2026",
+   1820
+  ]
+ ],
+ "top_reasons": [
+  [
+   "Investigation by Journal/Publisher",
+   32267
+  ],
+  [
+   "Unreliable Results and/or Conclusions",
+   22046
+  ],
+  [
+   "Investigation by Third Party",
+   18015
+  ],
+  [
+   "Concerns/Issues about Data",
+   15948
+  ],
+  [
+   "Concerns/Issues about Referencing/Attributions",
+   15334
+  ],
+  [
+   "Notice - Limited or No Information",
+   12118
+  ],
+  [
+   "Compromised Peer Review",
+   11909
+  ],
+  [
+   "Paper Mill",
+   11798
+  ],
+  [
+   "Concerns/Issues about Peer Review",
+   11728
+  ],
+  [
+   "Concerns/Issues about Results and/or Conclusions",
+   10056
+  ],
+  [
+   "Computer-Aided Content or Computer-Generated Content",
+   9332
+  ],
+  [
+   "Date of Article and/or Notice Unknown",
+   7026
+  ]
+ ],
+ "natures": [
+  "Retraction",
+  "Expression of concern",
+  "Correction",
+  "Reinstatement"
+ ],
+ "n_shards": 100
+}

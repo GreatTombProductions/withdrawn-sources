@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search the database — Withdrawn Sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="inner">
+  <a class="brand" href="index.html">Withdrawn Sources</a>
+  <nav>
+    <a href="index.html">Check citations</a>
+    <a href="search.html" class="active">Search the database</a>
+    <a href="method.html">Method &amp; sources</a>
+  </nav>
+</div></header>
+<div class="wrap">
+  <h1>Search the Retraction Watch snapshot</h1>
+  <p class="lede">
+    Search every record in the pinned snapshot by <strong>title, first author, or journal</strong>.
+    The search index (~14 MB) loads once, on your first search, and stays in your browser.
+  </p>
+
+  <div class="card">
+    <label for="q"><strong>Title, author, or journal</strong></label>
+    <input type="text" id="q" placeholder="e.g. “ileal-lymphoid”, “Wakefield”, “Lancet”">
+    <div class="actions">
+      <button id="searchBtn">Search</button>
+    </div>
+    <p class="small muted" id="status" style="margin-bottom:0"></p>
+  </div>
+
+  <div class="card">
+    <div class="reslist" id="list"></div>
+    <div id="detail"></div>
+  </div>
+</div>
+<footer class="site">
+  Static site · no accounts · no tracking. Data: Retraction Watch Database via Crossref
+  (see <a href="method.html">Method</a>).
+</footer>
+<script src="common.js"></script>
+<script src="search.js"></script>
+</body>
+</html>

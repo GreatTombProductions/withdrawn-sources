@@ -1,0 +1,21 @@
+{
+  "name": "Withdrawn Sources",
+  "short_name": "withdrawn-sources",
+  "slug": "withdrawn-sources",
+  "description": "Paste any text containing citations and see which cited papers carry retraction, expression-of-concern, correction, or reinstatement notices — extracted DOIs/PMIDs checked against a pinned, dated Retraction Watch Database snapshot, with dates, reasons, and links.",
+  "url": "https://greattombproductions.github.io/withdrawn-sources/",
+  "repo": "https://github.com/GreatTombProductions/withdrawn-sources",
+  "github": "https://github.com/GreatTombProductions/withdrawn-sources",
+  "data_source": "Retraction Watch Database (Retraction Watch / Center for Scientific Integrity), made publicly available by Crossref at gitlab.com/crossref/retraction-watch-data — dated snapshot pinned by SHA-256 in the receipt",
+  "data_url": "https://gitlab.com/crossref/retraction-watch-data",
+  "records": "72,646 records; 173,785 normalized identifiers (111,324 DOIs + 62,461 PMIDs); snapshot fetched 2026-09-25, covers notices through 2026-09-19",
+  "detail": "Check flow: paste text with citations; DOIs and PMIDs are extracted client-side (shared case table with a Python pipeline twin) and matched against the snapshot — every notice for an identifier renders with nature (retraction / expression of concern / correction / reinstatement), date, journal, publisher, authors, reason chips, and DOI/PubMed links; unmatched identifiers get a typed 'no notice found' plus an optional live Crossref member-metadata check. Search flow: the whole snapshot by title, first author, or journal. Method page: pinned receipt (URL, SHA-256, fetched-at, records), field semantics, extraction + matching rules, coverage caveats, attribution.",
+  "asymmetry": "Retractions, corrections, and expressions of concern are public — but they are filed where the citing text isn't, so content publishers, supplement vendors, and citation aggregators keep borrowing withdrawn authority. The reader at the decision boundary (patient, student, journalist, clinician checking a claim) cannot route a withdrawal notice to the claims citing it without identifier-level tooling. This is the portage layer: Retraction Watch CSV + Crossref metadata → paste-a-text check + full-database search.",
+  "pipeline_note": "Canonical-snapshot discipline (fetch + sha256 receipt; upstream updates daily, so the snapshot identity is load-bearing). Coupled-pair identifier extraction (Python pipeline/extract.py ↔ frontend/extract.js), one shared case table asserted by both plus a differential parity pass. Balanced-parenthesis DOI handling; DOI case-normalized with prefix stripping; both original-paper and notice identifiers indexed; multi-notice papers return the full trail oldest-first. Static site, client-side only; live Crossref checks read member-deposited update-to metadata (incomplete by publisher behavior — worded accordingly).",
+  "search_modes": ["paste citations", "title/author/journal search"],
+  "released_date": "2026-09-25",
+  "status": "released",
+  "deploy_branch": "gh-pages",
+  "deploy_method": "static",
+  "feedback_categories": ["data", "source-drift", "methodology", "bug"]
+}

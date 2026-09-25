@@ -1,0 +1,10 @@
+{
+ "source": "Retraction Watch Database (Crossref mirror)",
+ "source_page": "https://gitlab.com/crossref/retraction-watch-data",
+ "source_url": "https://gitlab.com/crossref/retraction-watch-data/-/raw/main/retraction_watch.csv",
+ "fetched_at": "2026-09-25T17:35:44Z",
+ "bytes": 66927623,
+ "sha256": "268f48866dfe73e96978897b43acbb260acfce1116fa647156c290b489b0746b",
+ "records": 72646,
+ "note": "Dated snapshot. Retraction Watch updates the upstream file every working day; re-run fetch.py to refresh and re-pin."
+}

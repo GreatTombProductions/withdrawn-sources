@@ -1,0 +1,104 @@
+{
+  "cases": [
+    {
+      "name": "plain doi in sentence",
+      "text": "As shown by Smith et al. (10.1016/S0140-6736(97)11096-0), the effect was clear.",
+      "expect": {"dois": ["10.1016/s0140-6736(97)11096-0"], "pmids": []}
+    },
+    {
+      "name": "doi.org url with trailing period",
+      "text": "See https://doi.org/10.1136/bmj.n71.",
+      "expect": {"dois": ["10.1136/bmj.n71"], "pmids": []}
+    },
+    {
+      "name": "doi colon prefix",
+      "text": "Citation: doi:10.1126/science.169.3946.1067 (1969).",
+      "expect": {"dois": ["10.1126/science.169.3946.1067"], "pmids": []}
+    },
+    {
+      "name": "uppercase doi normalized",
+      "text": "Retracted: 10.1016/J.MATLET.2026.140421",
+      "expect": {"dois": ["10.1016/j.matlet.2026.140421"], "pmids": []}
+    },
+    {
+      "name": "multiple dois first-seen order",
+      "text": "First 10.1000/aaa; then 10.2000/bbb and again 10.1000/aaa.",
+      "expect": {"dois": ["10.1000/aaa", "10.2000/bbb"], "pmids": []}
+    },
+    {
+      "name": "parenthesized doi with outer paren stripped",
+      "text": "The study (see 10.1234/abcd.5678) found no effect.",
+      "expect": {"dois": ["10.1234/abcd.5678"], "pmids": []}
+    },
+    {
+      "name": "balanced internal parens kept",
+      "text": "10.1016/S0140-6736(97)11096-0 lorem ipsum",
+      "expect": {"dois": ["10.1016/s0140-6736(97)11096-0"], "pmids": []}
+    },
+    {
+      "name": "unbalanced trailing parens dropped",
+      "text": "Refs: 10.1234/abc(def)) end.",
+      "expect": {"dois": ["10.1234/abc(def)"], "pmids": []}
+    },
+    {
+      "name": "quoted doi",
+      "text": "the article \"10.5555/67890\" was withdrawn",
+      "expect": {"dois": ["10.5555/67890"], "pmids": []}
+    },
+    {
+      "name": "markdown italic doi",
+      "text": "See *10.1000/xyz123* for details.",
+      "expect": {"dois": ["10.1000/xyz123"], "pmids": []}
+    },
+    {
+      "name": "pmid label variants",
+      "text": "PMID: 12345678 and PubMed ID 87654321 and PubMed 2345678 and PMID 34567890.",
+      "expect": {"dois": [], "pmids": ["12345678", "87654321", "2345678", "34567890"]}
+    },
+    {
+      "name": "pmid url",
+      "text": "https://pubmed.ncbi.nlm.nih.gov/31234567/",
+      "expect": {"dois": [], "pmids": ["31234567"]}
+    },
+    {
+      "name": "pmid dedupe across forms",
+      "text": "PMID: 12345678 ... https://pubmed.ncbi.nlm.nih.gov/12345678",
+      "expect": {"dois": [], "pmids": ["12345678"]}
+    },
+    {
+      "name": "mixed dois and pmids order",
+      "text": "PMID: 11111111 then 10.1000/one then PMID: 22222222 then 10.1000/two",
+      "expect": {"dois": ["10.1000/one", "10.1000/two"], "pmids": ["11111111", "22222222"]}
+    },
+    {
+      "name": "no identifiers",
+      "text": "This text has no identifiers at all. Nothing to check.",
+      "expect": {"dois": [], "pmids": []}
+    },
+    {
+      "name": "not-a-doi number sequence",
+      "text": "Version 10.123 was released, and 10.1234 has no slash.",
+      "expect": {"dois": [], "pmids": []}
+    },
+    {
+      "name": "doi with semicolon and comma tail",
+      "text": "10.1000/aaa.bbb,ccc;ddd; end",
+      "expect": {"dois": ["10.1000/aaa.bbb,ccc;ddd"], "pmids": []}
+    },
+    {
+      "name": "xml angle brackets terminate",
+      "text": "<a href=\"https://doi.org/10.1000/tag\">link</a>",
+      "expect": {"dois": ["10.1000/tag"], "pmids": []}
+    },
+    {
+      "name": "short doi suffix",
+      "text": "10.1234/a ends here",
+      "expect": {"dois": ["10.1234/a"], "pmids": []}
+    },
+    {
+      "name": "pmid too short excluded",
+      "text": "PMID: 123 (this is a year, not a pmid)",
+      "expect": {"dois": [], "pmids": []}
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Withdrawn Sources — check citations against the Retraction Watch Database</title>
+<meta name="description" content="Paste any text with citations: see which cited papers carry retraction, expression-of-concern, or correction notices — with dates, reasons, and links. Static, no accounts, source-linked.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="inner">
+  <a class="brand" href="index.html">Withdrawn Sources</a>
+  <nav>
+    <a href="index.html" class="active">Check citations</a>
+    <a href="search.html">Search the database</a>
+    <a href="method.html">Method &amp; sources</a>
+  </nav>
+</div></header>
+<div class="wrap">
+  <h1>Did the source you're citing still stand?</h1>
+  <p class="lede">
+    Retractions, corrections and expressions of concern are public — but they are filed where the
+    citing text isn't. Paste an article, claim, reading list, or bibliography here and this tool
+    extracts every DOI and PMID it can find, checks each against the Retraction Watch Database
+    snapshot, and shows you which sources carry update notices, with dates, reasons, and links.
+    Everything runs in your browser; nothing is sent anywhere.
+  </p>
+
+  <div class="card">
+    <div class="statgrid" id="stats"></div>
+    <p class="small muted" id="snapshotLine" style="margin-bottom:0">Loading snapshot information…</p>
+  </div>
+
+  <div class="card">
+    <label for="pasteBox"><strong>Paste text containing citations</strong></label>
+    <textarea id="pasteBox" placeholder="Paste an abstract, an article, a bibliography, or any text whose cited papers you want checked. DOIs (10.xxxx/…) and PubMed IDs (PMID: …) are detected automatically."></textarea>
+    <div class="actions">
+      <button id="checkBtn">Check citations</button>
+      <a href="#" id="exampleLink" class="small">try an example</a>
+    </div>
+    <p class="small muted" id="status" style="margin-bottom:0"></p>
+  </div>
+
+  <div id="output"></div>
+
+  <div class="card small muted">
+    <strong>Coverage:</strong> the Retraction Watch Database is the most complete public record of
+    retractions, but it is not exhaustive, and corrections / expressions of concern are less
+    comprehensively covered than retractions. <em>No notice found is not proof that none exists.</em>
+    The snapshot is dated; see <a href="method.html">Method</a> for limits, the snapshot receipt,
+    and how to check beyond it. Data: Retraction Watch Database, made publicly available by Crossref
+    (<a href="https://gitlab.com/crossref/retraction-watch-data" target="_blank" rel="noopener">gitlab.com/crossref/retraction-watch-data</a>);
+    it is updated each working day by Retraction Watch.
+  </div>
+</div>
+<footer class="site">
+  Static site · no accounts · no tracking · nothing leaves your browser except the optional
+  Crossref checks you click.
+</footer>
+<script src="extract.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

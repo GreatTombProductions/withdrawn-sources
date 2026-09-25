@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method &amp; sources — Withdrawn Sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="inner">
+  <a class="brand" href="index.html">Withdrawn Sources</a>
+  <nav>
+    <a href="index.html">Check citations</a>
+    <a href="search.html">Search the database</a>
+    <a href="method.html" class="active">Method &amp; sources</a>
+  </nav>
+</div></header>
+<div class="wrap">
+  <h1>Method &amp; sources</h1>
+  <p class="lede">
+    What this tool does, exactly: it extracts DOI and PMID identifiers from text you paste,
+    matches them against a dated snapshot of the Retraction Watch Database, and — on request —
+    checks Crossref member metadata live for identifiers the snapshot does not contain.
+  </p>
+
+  <h2>Source &amp; snapshot</h2>
+  <p>
+    The dataset is the <strong>Retraction Watch Database</strong>, maintained by Retraction Watch
+    and made publicly available by Crossref through
+    <a href="https://gitlab.com/crossref/retraction-watch-data" target="_blank" rel="noopener">gitlab.com/crossref/retraction-watch-data</a>
+    (CSV, regenerated each working day). This site ships a <strong>pinned snapshot</strong>; the
+    receipt below identifies exactly which snapshot — hash and date — so any number on this site
+    can be traced to a specific edition of the source file.
+  </p>
+  <div class="card">
+    <table id="receiptsTable">
+      <thead><tr><th>Field</th><th>Value</th></tr></thead>
+      <tbody><tr><td colspan="2" class="muted">Loading receipt…</td></tr></tbody>
+    </table>
+    <p class="small muted" style="margin-bottom:0">
+      Refresh policy: re-running <code>pipeline/fetch.py</code> re-pins a newer snapshot and the
+      receipt above changes. This build uses one dated snapshot; nothing updates in place.
+    </p>
+  </div>
+
+  <h2>What is extracted, and what is not</h2>
+  <ul>
+    <li><strong>Detected:</strong> DOIs written as <code>10.xxxx/…</code> (including
+      <code>https://doi.org/…</code> and <code>doi:</code> forms), and PubMed IDs in the common
+      label forms (<code>PMID: 12345678</code>, <code>PubMed ID 12345678</code>) and PubMed URLs.</li>
+    <li><strong>Not detected:</strong> author–year citations, plain titles, ISBNs, and anything
+      else without a machine-readable identifier. For those, use
+      <a href="search.html">the database search</a> by title, author, or journal.</li>
+    <li>DOIs may themselves contain parentheses (e.g. <code>10.1016/S0140-6736(97)11096-0</code>);
+      the extractor keeps balanced parentheses and strips surrounding punctuation so these survive
+      intact.</li>
+  </ul>
+
+  <h2>How a match is made</h2>
+  <ul>
+    <li>DOIs are compared <strong>case-insensitively</strong> after stripping URL/<code>doi:</code>
+      prefixes. Both the <em>original paper's</em> DOI and the <em>notice's</em> DOI are indexed —
+      either one resolves to the record.</li>
+    <li>PMIDs are compared as digits, matching both the original-paper and notice PMID fields.</li>
+    <li>A paper can have <strong>multiple notices over time</strong> (e.g. a 2004 correction and a
+      2010 retraction). All matching records are shown, oldest first — the record here is the
+      notice trail, not a single verdict.</li>
+  </ul>
+
+  <h2>Coverage &amp; caveats (read these)</h2>
+  <ul>
+    <li><strong>“No notice found” is not “not retracted.”</strong> The database is the most
+      complete public record of retractions but is not exhaustive; Crossref states that
+      corrections and expressions of concern are less comprehensively covered than retractions.</li>
+    <li><strong>The snapshot is dated.</strong> Retraction Watch updates the source each working
+      day; notices published after the snapshot date cannot appear here. Newer records are exactly
+      why the per-identifier <em>live Crossref check</em> exists.</li>
+    <li><strong>Live Crossref checks read member-deposited metadata only.</strong> Crossref's
+      per-work <code>update-to</code> field is supplied by publishers and is incomplete — a
+      retracted work can show no update entry (the 1998 Wakefield paper is a live example). A
+      “no update notice” result there is a statement about the metadata, not about the paper.</li>
+    <li><strong>Record semantics come from Retraction Watch.</strong> “Nature” is the notice type
+      (<em>Retraction</em>, <em>Expression of concern</em>, <em>Correction</em>,
+      <em>Reinstatement</em>); “reason” is Retraction Watch's controlled vocabulary. Read them as
+      the database's terms, not this site's judgment.</li>
+    <li><strong>Nothing leaves your browser</strong> except the live Crossref checks you click
+      (a direct request from your browser to <code>api.crossref.org</code>), and pasted text never
+      leaves it at all.</li>
+  </ul>
+
+  <h2>Attribution</h2>
+  <p>
+    Data: <strong>Retraction Watch Database</strong> (Retraction Watch / The Center for Scientific
+    Integrity), made publicly available by <strong>Crossref</strong> at
+    <a href="https://gitlab.com/crossref/retraction-watch-data" target="_blank" rel="noopener">gitlab.com/crossref/retraction-watch-data</a>;
+    updated each working day. Field semantics follow the
+    <a href="https://retractionwatch.com/retraction-watch-database-user-guide/" target="_blank" rel="noopener">Retraction Watch Database user guide</a>.
+    Live checks read <a href="https://api.crossref.org/" target="_blank" rel="noopener">Crossref REST API</a> member metadata.
+    This site is a static, non-commercial portage layer over those public sources; it is not
+    affiliated with Retraction Watch or Crossref.
+  </p>
+
+  <h2>How it's built</h2>
+  <pre class="small">pipeline/fetch.py    download the snapshot + write the pinned receipt (sha256)
+pipeline/build.py    parse → lookup index (DOI/PMID) + record shards + search index
+pipeline/extract.py  identifier extraction (Python twin of frontend/extract.js)
+tests/               shared extraction cases (both languages) + data-contract + browser smoke</pre>
+  <p class="small muted">
+    The extraction rules are one coupled pair implemented twice — Python for the pipeline, JS for
+    your browser — held to one shared case table plus a differential parity pass (zero diffs
+    allowed). See the repository README for the exact commands.
+  </p>
+</div>
+<footer class="site">
+  Static site · no accounts · no tracking ·
+  <a href="https://github.com/GreatTombProductions/withdrawn-sources" target="_blank" rel="noopener">source</a>
+</footer>
+<script src="common.js"></script>
+<script>
+(async () => {
+  const tbody = document.querySelector('#receiptsTable tbody');
+  try {
+    const r = await fetch('data/receipts.json');
+    const d = await r.json();
+    const rows = [
+      ['Source', 'Retraction Watch Database (Crossref mirror)'],
+      ['Source file', `<a href="${WS.esc(d.source_url)}" target="_blank" rel="noopener">retraction_watch.csv</a> (${WS.esc(String(d.bytes))} bytes)`],
+      ['Snapshot fetched (UTC)', WS.esc(d.fetched_at)],
+      ['Records in snapshot', WS.esc(String(d.records))],
+      ['SHA-256', `<code>${WS.esc(d.sha256)}</code>`],
+    ];
+    tbody.innerHTML = rows.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="2">Receipt unavailable (${WS.esc(String(e))})</td></tr>`;
+  }
+})();
+</script>
+</body>
+</html>
